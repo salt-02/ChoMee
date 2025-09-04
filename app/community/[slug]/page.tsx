@@ -7,11 +7,9 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
-import { Heart, MessageCircle, Share2, Camera, Send, X, ArrowLeft } from "lucide-react"
+import { Heart, MessageCircle, Camera, Send, X, Plus, Search, User } from "lucide-react"
 import { useParams, useRouter } from "next/navigation"
-import { Navigation, DesktopNavigation } from "@/components/navigation"
 
 interface Comment {
   id: string
@@ -259,33 +257,174 @@ export default function CommunityPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-20 md:pb-0 md:pt-20">
-      <DesktopNavigation />
+    <div
+      className="min-h-screen relative overflow-hidden"
+      style={{
+        background: "linear-gradient(135deg, #D4B896 0%, #F5F1E8 50%, #E6D7B8 100%)",
+      }}
+    >
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="absolute -top-20 -left-20 w-96 h-96 opacity-30"
+          style={{
+            background: "#F5F1E8",
+            borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
+          }}
+        />
+        <div
+          className="absolute top-20 -right-32 w-80 h-80 opacity-40"
+          style={{
+            background: "#E6D7B8",
+            borderRadius: "40% 60% 70% 30% / 40% 70% 30% 60%",
+          }}
+        />
+        <div
+          className="absolute bottom-0 left-0 right-0 h-32"
+          style={{
+            background: "linear-gradient(to top, #8FA8B2 0%, transparent 100%)",
+            borderRadius: "50% 50% 0 0 / 20% 20% 0 0",
+          }}
+        />
+      </div>
 
-      <div className={`${community.color} text-white p-6`}>
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-4 mb-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => router.back()}
-              className="text-white hover:bg-white/20 p-2"
-            >
-              <ArrowLeft className="w-4 h-4" />
-            </Button>
-            <div>
-              <h1 className="text-3xl font-bold">{community.name}</h1>
-              <p className="text-white/90">{community.description}</p>
-            </div>
-          </div>
-          <Badge className="bg-white/20 text-white">{community.memberCount.toLocaleString()} members</Badge>
+      <div className="relative z-10 p-6 text-center">
+        <h1 className="text-4xl font-bold mb-2" style={{ color: "#4A90A4" }}>
+          ChoMee
+        </h1>
+      </div>
+
+      <div className="relative z-10 max-w-md mx-auto px-4 pb-24 space-y-4">
+        {posts.map((post) => (
+          <Card key={post.id} className="bg-white/90 backdrop-blur-sm border-0 shadow-lg rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              {/* Post images */}
+              {post.image && (
+                <div className="aspect-square">
+                  <img
+                    src={post.image || "/placeholder.svg"}
+                    alt="Post content"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+
+              {/* Post content */}
+              <div className="p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <Avatar className="w-10 h-10">
+                    <AvatarImage src={post.avatar || "/placeholder.svg"} />
+                    <AvatarFallback>{post.author[0]}</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <div className="font-semibold text-gray-800">{post.author}</div>
+                    <div className="text-sm text-gray-600">{post.content}</div>
+                  </div>
+                </div>
+
+                {/* Action buttons */}
+                <div className="flex items-center justify-between pt-2">
+                  <div className="flex items-center gap-4">
+                    <button onClick={() => handleLike(post.id)} className="flex items-center gap-1">
+                      <div
+                        className="w-8 h-6 rounded-full flex items-center justify-center"
+                        style={{ backgroundColor: "#E6D7B8" }}
+                      >
+                        <MessageCircle className="w-4 h-4 text-gray-600" />
+                      </div>
+                    </button>
+                    <button onClick={() => toggleComments(post.id)} className="flex items-center gap-1">
+                      <div
+                        className="w-8 h-6 rounded-full flex items-center justify-center"
+                        style={{ backgroundColor: "#E6D7B8" }}
+                      >
+                        <Heart className={`w-4 h-4 ${post.isLiked ? "fill-red-500 text-red-500" : "text-gray-600"}`} />
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Comments section */}
+              {post.showComments && (
+                <div className="px-4 pb-4 space-y-3 border-t border-gray-100">
+                  {post.comments.map((comment) => (
+                    <div key={comment.id} className="flex gap-2 pt-3">
+                      <Avatar className="w-8 h-8">
+                        <AvatarImage src={comment.avatar || "/placeholder.svg"} />
+                        <AvatarFallback>{comment.author[0]}</AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 text-sm">
+                          <span className="font-medium text-gray-800">{comment.author}</span>
+                          <span className="text-gray-500">{comment.timestamp}</span>
+                        </div>
+                        <p className="text-sm text-gray-700 mt-1">{comment.content}</p>
+                      </div>
+                    </div>
+                  ))}
+
+                  <div className="flex gap-2 pt-2">
+                    <Avatar className="w-8 h-8">
+                      <AvatarImage src={currentUser.avatar || "/placeholder.svg"} />
+                      <AvatarFallback>You</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1 flex gap-2">
+                      <Input
+                        placeholder="Write a comment..."
+                        value={commentInputs[post.id] || ""}
+                        onChange={(e) => setCommentInputs({ ...commentInputs, [post.id]: e.target.value })}
+                        className="flex-1 rounded-full"
+                        onKeyPress={(e) => e.key === "Enter" && handleComment(post.id)}
+                      />
+                      <Button
+                        size="sm"
+                        onClick={() => handleComment(post.id)}
+                        disabled={!commentInputs[post.id]?.trim()}
+                        className="rounded-full"
+                      >
+                        <Send className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <div className="fixed bottom-24 right-6 z-20">
+        <Button
+          className="w-14 h-14 rounded-full shadow-lg border-0"
+          style={{ backgroundColor: "#D4B896" }}
+          onClick={() => {
+            // Toggle post creation modal or scroll to top
+            window.scrollTo({ top: 0, behavior: "smooth" })
+          }}
+        >
+          <Plus className="w-6 h-6 text-white" />
+        </Button>
+      </div>
+
+      <div className="fixed bottom-0 left-0 right-0 z-20">
+        <div className="h-20 flex items-center justify-center gap-12 px-8" style={{ backgroundColor: "#8FA8B2" }}>
+          <Button variant="ghost" size="sm" className="p-3">
+            <Search className="w-6 h-6 text-white" />
+          </Button>
+          <Button variant="ghost" size="sm" className="p-3">
+            <User className="w-6 h-6 text-white" />
+          </Button>
+          <Button variant="ghost" size="sm" className="p-3">
+            <MessageCircle className="w-6 h-6 text-white" />
+          </Button>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto p-4 space-y-6">
-        <Card className="bg-card border-border">
+      {/* Hidden post creation form */}
+      <div className="hidden">
+        <Card className="bg-white/90 backdrop-blur-sm border-0 shadow-lg rounded-3xl">
           <CardHeader>
-            <CardTitle className="text-lg text-card-foreground">Share with the community</CardTitle>
+            <CardTitle className="text-lg text-gray-800">Share with the community</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex gap-3">
@@ -295,10 +434,10 @@ export default function CommunityPage() {
               </Avatar>
               <div className="flex-1 space-y-3">
                 <Textarea
-                  placeholder="What's on your mind? Share your experiences, ask questions, or start a discussion..."
+                  placeholder="What's on your mind?"
                   value={newPost}
                   onChange={(e) => setNewPost(e.target.value)}
-                  className="min-h-20 resize-none"
+                  className="min-h-20 resize-none rounded-2xl"
                 />
 
                 {selectedImage && (
@@ -306,12 +445,12 @@ export default function CommunityPage() {
                     <img
                       src={selectedImage || "/placeholder.svg"}
                       alt="Upload preview"
-                      className="rounded-lg max-w-full h-48 object-cover"
+                      className="rounded-2xl max-w-full h-48 object-cover"
                     />
                     <Button
                       variant="destructive"
                       size="sm"
-                      className="absolute top-2 right-2"
+                      className="absolute top-2 right-2 rounded-full"
                       onClick={() => setSelectedImage(null)}
                     >
                       <X className="w-4 h-4" />
@@ -331,7 +470,7 @@ export default function CommunityPage() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="gap-2 bg-transparent"
+                      className="gap-2 rounded-full bg-transparent"
                       onClick={() => fileInputRef.current?.click()}
                     >
                       <Camera className="w-4 h-4" />
@@ -341,7 +480,8 @@ export default function CommunityPage() {
                   <Button
                     onClick={handleSubmitPost}
                     disabled={!newPost.trim()}
-                    className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground"
+                    className="gap-2 rounded-full"
+                    style={{ backgroundColor: "#D4B896" }}
                   >
                     <Send className="w-4 h-4" />
                     Post
@@ -351,118 +491,7 @@ export default function CommunityPage() {
             </div>
           </CardContent>
         </Card>
-
-        <div className="space-y-4">
-          {posts.map((post) => (
-            <Card key={post.id} className="bg-card border-border">
-              <CardContent className="p-6">
-                <div className="flex gap-3">
-                  <Avatar>
-                    <AvatarImage src={post.avatar || "/placeholder.svg"} />
-                    <AvatarFallback>{post.author[0]}</AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1 space-y-3">
-                    <div className="flex items-center gap-2">
-                      <span className="font-semibold text-card-foreground">{post.author}</span>
-                      <span className="text-muted-foreground">@{post.username}</span>
-                      <span className="text-muted-foreground">•</span>
-                      <span className="text-muted-foreground text-sm">{post.timestamp}</span>
-                      <Badge variant="secondary" className="text-xs">
-                        {community.name}
-                      </Badge>
-                    </div>
-
-                    <p className="text-foreground text-pretty">{post.content}</p>
-
-                    {post.image && (
-                      <img
-                        src={post.image || "/placeholder.svg"}
-                        alt="Post content"
-                        className="rounded-lg max-w-full h-auto"
-                      />
-                    )}
-
-                    <div className="flex items-center gap-6 pt-2">
-                      <button
-                        onClick={() => handleLike(post.id)}
-                        className={`flex items-center gap-2 text-sm transition-colors ${
-                          post.isLiked ? "text-red-500 hover:text-red-600" : "text-muted-foreground hover:text-red-500"
-                        }`}
-                      >
-                        <Heart className={`w-4 h-4 ${post.isLiked ? "fill-current" : ""}`} />
-                        {post.likes}
-                      </button>
-
-                      <button
-                        onClick={() => toggleComments(post.id)}
-                        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        <MessageCircle className="w-4 h-4" />
-                        {post.comments.length}
-                      </button>
-
-                      <button
-                        onClick={() => handleShare(post)}
-                        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        <Share2 className="w-4 h-4" />
-                        Share
-                      </button>
-                    </div>
-
-                    {post.showComments && (
-                      <div className="space-y-3 pt-3 border-t border-border">
-                        {post.comments.map((comment) => (
-                          <div key={comment.id} className="flex gap-2">
-                            <Avatar className="w-8 h-8">
-                              <AvatarImage src={comment.avatar || "/placeholder.svg"} />
-                              <AvatarFallback>{comment.author[0]}</AvatarFallback>
-                            </Avatar>
-                            <div className="flex-1">
-                              <div className="flex items-center gap-2 text-sm">
-                                <span className="font-medium text-card-foreground">{comment.author}</span>
-                                <span className="text-muted-foreground">@{comment.username}</span>
-                                <span className="text-muted-foreground">•</span>
-                                <span className="text-muted-foreground">{comment.timestamp}</span>
-                              </div>
-                              <p className="text-sm text-foreground mt-1">{comment.content}</p>
-                            </div>
-                          </div>
-                        ))}
-
-                        <div className="flex gap-2">
-                          <Avatar className="w-8 h-8">
-                            <AvatarImage src={currentUser.avatar || "/placeholder.svg"} />
-                            <AvatarFallback>You</AvatarFallback>
-                          </Avatar>
-                          <div className="flex-1 flex gap-2">
-                            <Input
-                              placeholder="Write a comment..."
-                              value={commentInputs[post.id] || ""}
-                              onChange={(e) => setCommentInputs({ ...commentInputs, [post.id]: e.target.value })}
-                              className="flex-1"
-                              onKeyPress={(e) => e.key === "Enter" && handleComment(post.id)}
-                            />
-                            <Button
-                              size="sm"
-                              onClick={() => handleComment(post.id)}
-                              disabled={!commentInputs[post.id]?.trim()}
-                            >
-                              <Send className="w-4 h-4" />
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
       </div>
-
-      <Navigation />
     </div>
   )
 }
