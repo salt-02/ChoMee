@@ -6,7 +6,7 @@ export default function SelectionPage() {
     <div
       className="min-h-screen relative overflow-hidden"
       style={{
-        background: "linear-gradient(180deg, #0ea5e9 0%, #ecfeff 50%, #f97316 100%)",
+        background: "linear-gradient(180deg, #D4B896 0%, #F5F1E8 50%, #E6D7B8 100%)",
       }}
     >
       <div className="absolute inset-0">
@@ -14,7 +14,7 @@ export default function SelectionPage() {
         <div
           className="absolute top-0 left-0 w-full h-64"
           style={{
-            background: "#ecfeff",
+            background: "#F5F1E8",
             clipPath: "polygon(0 0, 100% 0, 100% 60%, 80% 80%, 60% 70%, 40% 85%, 20% 75%, 0 90%)",
           }}
         />
@@ -23,7 +23,7 @@ export default function SelectionPage() {
         <div
           className="absolute bottom-0 left-0 w-full h-48"
           style={{
-            background: "#f97316",
+            background: "#8FA8B2",
             clipPath: "polygon(0 100%, 100% 100%, 100% 40%, 80% 20%, 60% 30%, 40% 15%, 20% 25%, 0 10%)",
           }}
         />
@@ -31,7 +31,9 @@ export default function SelectionPage() {
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4">
         <div className="mb-16">
-          <h1 className="text-4xl font-bold text-primary mb-2">ChoMee</h1>
+          <h1 className="text-4xl font-bold mb-2" style={{ color: "#4A90A4" }}>
+            ChoMee
+          </h1>
         </div>
 
         <div className="flex flex-col items-center space-y-8 w-full max-w-sm">
@@ -39,14 +41,16 @@ export default function SelectionPage() {
             <div
               className="relative w-full h-32 flex items-center justify-center cursor-pointer transition-transform hover:scale-105"
               style={{
-                background: "#ecfeff",
+                background: "#E6D7B8",
                 borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
                 boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
               }}
             >
               <div className="text-center">
-                <div className="text-xl font-semibold text-primary mb-2">趣味診断</div>
-                <Search className="w-6 h-6 text-primary mx-auto" />
+                <div className="text-xl font-semibold mb-2" style={{ color: "#4A90A4" }}>
+                  趣味診断
+                </div>
+                <Search className="w-6 h-6 mx-auto" style={{ color: "#4A90A4" }} />
               </div>
             </div>
           </Link>
@@ -55,14 +59,16 @@ export default function SelectionPage() {
             <div
               className="relative w-full h-32 flex items-center justify-center cursor-pointer transition-transform hover:scale-105"
               style={{
-                background: "#ecfeff",
+                background: "#E6D7B8",
                 borderRadius: "40% 60% 70% 30% / 40% 70% 30% 60%",
                 boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
               }}
             >
               <div className="text-center">
-                <div className="text-xl font-semibold text-primary mb-2">コミュニティに入る</div>
-                <Users className="w-6 h-6 text-primary mx-auto" />
+                <div className="text-xl font-semibold mb-2" style={{ color: "#4A90A4" }}>
+                  コミュニティに入る
+                </div>
+                <Users className="w-6 h-6 mx-auto" style={{ color: "#4A90A4" }} />
               </div>
             </div>
           </Link>
