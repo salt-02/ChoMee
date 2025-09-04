@@ -287,13 +287,18 @@ export default function CommunityPage() {
         />
       </div>
 
-      <div className="relative z-10 p-6 text-center">
+      <div
+        className="fixed top-0 left-0 right-0 z-30 p-6 text-center"
+        style={{
+          background: "linear-gradient(135deg, #D4B896 0%, #F5F1E8 50%, #E6D7B8 100%)",
+        }}
+      >
         <h1 className="text-4xl font-bold mb-2" style={{ color: "#4A90A4" }}>
           ChoMee
         </h1>
       </div>
 
-      <div className="relative z-10 max-w-md mx-auto px-4 pb-24 space-y-4">
+      <div className="relative z-10 max-w-md mx-auto px-4 pt-20 pb-24 space-y-4">
         {posts.map((post) => (
           <Card key={post.id} className="bg-white/90 backdrop-blur-sm border-0 shadow-lg rounded-3xl overflow-hidden">
             <CardContent className="p-0">
