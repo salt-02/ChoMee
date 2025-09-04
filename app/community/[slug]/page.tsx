@@ -299,31 +299,33 @@ export default function CommunityPage() {
       </div>
 
       <div className="relative z-10 max-w-md mx-auto px-4 pt-20 pb-24 space-y-4">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="columns-2 gap-3 space-y-3">
           {posts.map((post) => (
-            <Card key={post.id} className="bg-white/90 backdrop-blur-sm border-0 shadow-lg rounded-3xl overflow-hidden">
+            <Card
+              key={post.id}
+              className="bg-white/90 backdrop-blur-sm border-0 shadow-lg rounded-3xl overflow-hidden break-inside-avoid mb-3"
+            >
               <CardContent className="p-0">
-                {/* Post images */}
                 {post.image && (
-                  <div className="aspect-square">
+                  <div className="w-full">
                     <img
                       src={post.image || "/placeholder.svg"}
                       alt="Post content"
-                      className="w-full h-full object-cover"
+                      className="w-full h-auto object-cover"
                     />
                   </div>
                 )}
 
                 {/* Post content */}
                 <div className="p-3">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Avatar className="w-8 h-8">
+                  <div className="flex items-start gap-2 mb-2">
+                    <Avatar className="w-8 h-8 flex-shrink-0">
                       <AvatarImage src={post.avatar || "/placeholder.svg"} />
                       <AvatarFallback>{post.author[0]}</AvatarFallback>
                     </Avatar>
                     <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-gray-800 text-sm truncate">{post.author}</div>
-                      <div className="text-xs text-gray-600 line-clamp-2">{post.content}</div>
+                      <div className="font-semibold text-gray-800 text-sm">{post.author}</div>
+                      <div className="text-xs text-gray-600 mt-1 leading-relaxed">{post.content}</div>
                     </div>
                   </div>
 
