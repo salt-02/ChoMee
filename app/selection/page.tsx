@@ -39,7 +39,7 @@ export default function SelectionPage() {
         <div className="flex flex-col items-center space-y-8 w-full max-w-sm">
           <Link href="/diagnosis" className="block w-full">
             <div
-              className="relative w-full h-32 flex items-center justify-center cursor-pointer transition-transform hover:scale-105"
+              className="relative w-full h-32 flex items-center justify-center cursor-pointer transition-transform hover:scale-105 text-[rgba(244,224,180,1)]"
               style={{
                 background: "#D9C7A3",
                 borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
