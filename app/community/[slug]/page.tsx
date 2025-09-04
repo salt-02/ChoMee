@@ -299,103 +299,107 @@ export default function CommunityPage() {
       </div>
 
       <div className="relative z-10 max-w-md mx-auto px-4 pt-20 pb-24 space-y-4">
-        {posts.map((post) => (
-          <Card key={post.id} className="bg-white/90 backdrop-blur-sm border-0 shadow-lg rounded-3xl overflow-hidden">
-            <CardContent className="p-0">
-              {/* Post images */}
-              {post.image && (
-                <div className="aspect-square">
-                  <img
-                    src={post.image || "/placeholder.svg"}
-                    alt="Post content"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              )}
-
-              {/* Post content */}
-              <div className="p-4">
-                <div className="flex items-center gap-3 mb-3">
-                  <Avatar className="w-10 h-10">
-                    <AvatarImage src={post.avatar || "/placeholder.svg"} />
-                    <AvatarFallback>{post.author[0]}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <div className="font-semibold text-gray-800">{post.author}</div>
-                    <div className="text-sm text-gray-600">{post.content}</div>
+        <div className="grid grid-cols-2 gap-3">
+          {posts.map((post) => (
+            <Card key={post.id} className="bg-white/90 backdrop-blur-sm border-0 shadow-lg rounded-3xl overflow-hidden">
+              <CardContent className="p-0">
+                {/* Post images */}
+                {post.image && (
+                  <div className="aspect-square">
+                    <img
+                      src={post.image || "/placeholder.svg"}
+                      alt="Post content"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                </div>
+                )}
 
-                {/* Action buttons */}
-                <div className="flex items-center justify-between pt-2">
-                  <div className="flex items-center gap-4">
-                    <button onClick={() => handleLike(post.id)} className="flex items-center gap-1">
-                      <div
-                        className="w-8 h-6 rounded-full flex items-center justify-center"
-                        style={{ backgroundColor: "#E6D7B8" }}
-                      >
-                        <MessageCircle className="w-4 h-4 text-gray-600" />
-                      </div>
-                    </button>
-                    <button onClick={() => toggleComments(post.id)} className="flex items-center gap-1">
-                      <div
-                        className="w-8 h-6 rounded-full flex items-center justify-center"
-                        style={{ backgroundColor: "#E6D7B8" }}
-                      >
-                        <Heart className={`w-4 h-4 ${post.isLiked ? "fill-red-500 text-red-500" : "text-gray-600"}`} />
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Comments section */}
-              {post.showComments && (
-                <div className="px-4 pb-4 space-y-3 border-t border-gray-100">
-                  {post.comments.map((comment) => (
-                    <div key={comment.id} className="flex gap-2 pt-3">
-                      <Avatar className="w-8 h-8">
-                        <AvatarImage src={comment.avatar || "/placeholder.svg"} />
-                        <AvatarFallback>{comment.author[0]}</AvatarFallback>
-                      </Avatar>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 text-sm">
-                          <span className="font-medium text-gray-800">{comment.author}</span>
-                          <span className="text-gray-500">{comment.timestamp}</span>
-                        </div>
-                        <p className="text-sm text-gray-700 mt-1">{comment.content}</p>
-                      </div>
-                    </div>
-                  ))}
-
-                  <div className="flex gap-2 pt-2">
+                {/* Post content */}
+                <div className="p-3">
+                  <div className="flex items-center gap-2 mb-2">
                     <Avatar className="w-8 h-8">
-                      <AvatarImage src={currentUser.avatar || "/placeholder.svg"} />
-                      <AvatarFallback>You</AvatarFallback>
+                      <AvatarImage src={post.avatar || "/placeholder.svg"} />
+                      <AvatarFallback>{post.author[0]}</AvatarFallback>
                     </Avatar>
-                    <div className="flex-1 flex gap-2">
-                      <Input
-                        placeholder="Write a comment..."
-                        value={commentInputs[post.id] || ""}
-                        onChange={(e) => setCommentInputs({ ...commentInputs, [post.id]: e.target.value })}
-                        className="flex-1 rounded-full"
-                        onKeyPress={(e) => e.key === "Enter" && handleComment(post.id)}
-                      />
-                      <Button
-                        size="sm"
-                        onClick={() => handleComment(post.id)}
-                        disabled={!commentInputs[post.id]?.trim()}
-                        className="rounded-full"
-                      >
-                        <Send className="w-4 h-4" />
-                      </Button>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-gray-800 text-sm truncate">{post.author}</div>
+                      <div className="text-xs text-gray-600 line-clamp-2">{post.content}</div>
+                    </div>
+                  </div>
+
+                  {/* Action buttons */}
+                  <div className="flex items-center justify-between pt-1">
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => handleLike(post.id)} className="flex items-center gap-1">
+                        <div
+                          className="w-6 h-5 rounded-full flex items-center justify-center"
+                          style={{ backgroundColor: "#E6D7B8" }}
+                        >
+                          <MessageCircle className="w-3 h-3 text-gray-600" />
+                        </div>
+                      </button>
+                      <button onClick={() => toggleComments(post.id)} className="flex items-center gap-1">
+                        <div
+                          className="w-6 h-5 rounded-full flex items-center justify-center"
+                          style={{ backgroundColor: "#E6D7B8" }}
+                        >
+                          <Heart
+                            className={`w-3 h-3 ${post.isLiked ? "fill-red-500 text-red-500" : "text-gray-600"}`}
+                          />
+                        </div>
+                      </button>
                     </div>
                   </div>
                 </div>
-              )}
-            </CardContent>
-          </Card>
-        ))}
+
+                {/* Comments section */}
+                {post.showComments && (
+                  <div className="px-4 pb-4 space-y-3 border-t border-gray-100">
+                    {post.comments.map((comment) => (
+                      <div key={comment.id} className="flex gap-2 pt-3">
+                        <Avatar className="w-8 h-8">
+                          <AvatarImage src={comment.avatar || "/placeholder.svg"} />
+                          <AvatarFallback>{comment.author[0]}</AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 text-sm">
+                            <span className="font-medium text-gray-800">{comment.author}</span>
+                            <span className="text-gray-500">{comment.timestamp}</span>
+                          </div>
+                          <p className="text-sm text-gray-700 mt-1">{comment.content}</p>
+                        </div>
+                      </div>
+                    ))}
+
+                    <div className="flex gap-2 pt-2">
+                      <Avatar className="w-8 h-8">
+                        <AvatarImage src={currentUser.avatar || "/placeholder.svg"} />
+                        <AvatarFallback>You</AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1 flex gap-2">
+                        <Input
+                          placeholder="Write a comment..."
+                          value={commentInputs[post.id] || ""}
+                          onChange={(e) => setCommentInputs({ ...commentInputs, [post.id]: e.target.value })}
+                          className="flex-1 rounded-full"
+                          onKeyPress={(e) => e.key === "Enter" && handleComment(post.id)}
+                        />
+                        <Button
+                          size="sm"
+                          onClick={() => handleComment(post.id)}
+                          disabled={!commentInputs[post.id]?.trim()}
+                          className="rounded-full"
+                        >
+                          <Send className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
 
       <div className="fixed bottom-24 right-6 z-20">
