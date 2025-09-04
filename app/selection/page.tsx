@@ -29,7 +29,7 @@ export default function SelectionPage() {
         />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4 text-[rgba(251,248,235,1)]">
         <div className="mb-16">
           <h1 className="text-4xl font-bold mb-2" style={{ color: "#2E6B7A" }}>
             ChoMee
