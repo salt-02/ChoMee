@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Home, Users, Search, User } from "lucide-react"
 import { usePathname } from "next/navigation"
+import "./yuano.css";
 
 export function Navigation() {
   const pathname = usePathname()
