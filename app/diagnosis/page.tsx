@@ -86,9 +86,9 @@ export default function DiagnosisPage() {
             <div className="space-y-2">
               <div className="flex justify-between text-sm text-muted-foreground">
                 <span>
-                  {answeredQuestions} of {questions.length} questions answered
+                  {answeredQuestions} of {questions.length} 
                 </span>
-                <span>{Math.round(progress)}% Complete</span>
+                <span>{Math.round(progress)}%</span>
               </div>
               <Progress value={progress} className="w-full" />
             </div>
@@ -135,7 +135,7 @@ export default function DiagnosisPage() {
                 className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
                 disabled={answeredQuestions === 0}
               >
-                Get Results ({answeredQuestions}/{questions.length} answered)
+                診断結果を得る ({answeredQuestions}/{questions.length} answered)
               </Button>
             </div>
           </CardContent>
