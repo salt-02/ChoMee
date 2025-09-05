@@ -82,7 +82,7 @@ export default function DiagnosisPage() {
       <div className="max-w-2xl mx-auto space-y-6">
         <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-2xl text-card-foreground text-center">Hobby Diagnosis</CardTitle>
+            <CardTitle className="text-2xl text-card-foreground text-center">趣味診断</CardTitle>
             <div className="space-y-2">
               <div className="flex justify-between text-sm text-muted-foreground">
                 <span>
