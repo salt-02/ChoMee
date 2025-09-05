@@ -1,0 +1,44 @@
+// app/page.tsx  ← ここがスプラッシュ
+"use client"
+
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+
+export default function Splash() {
+  const router = useRouter()
+  const [fade, setFade] = useState(false)
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setFade(true), 2600)   // 2.6秒でフェード開始
+    const t2 = setTimeout(() => router.replace("/home"), 3000) // 3秒後に/home
+    return () => { clearTimeout(t1); clearTimeout(t2) }
+  }, [router])
+
+  return (
+    <div
+      className={`relative min-h-screen flex items-center justify-center overflow-hidden transition-opacity duration-500 ${fade ? "opacity-0" : "opacity-100"}`}
+      style={{ background: "#F5933C" }}  // ベースのオレンジ
+    >
+      {/* 角のやわらかいブロブ（薄オレンジ） */}
+      <div className="absolute -top-10 -left-8 w-64 h-64 opacity-40" style={{ background: "#FAD0AF", borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%" }} />
+      <div className="absolute top-8 right-0 w-56 h-56 opacity-40" style={{ background: "#FAD0AF", borderRadius: "40% 60% 70% 30% / 40% 70% 30% 60%" }} />
+      <div className="absolute -bottom-10 left-0 w-80 h-80 opacity-40" style={{ background: "#FAD0AF", borderRadius: "70% 30% 40% 60% / 50% 60% 40% 50%" }} />
+
+      {/* ロゴ＆タグライン */}
+      <div className="relative z-10 text-center">
+        <div className="mb-3">
+          <span className="inline-block text-[52px] leading-none font-extrabold tracking-wide text-white drop-shadow-[2px_4px_0_rgba(0,0,0,0.15)]">
+            ChoMee
+          </span>
+        </div>
+        <p className="text-white/95 text-sm">自分の世界、もう一つ</p>
+      </div>
+
+      {/* 下の波（薄ブルー） */}
+      <div className="absolute bottom-0 left-0 right-0 h-24" style={{
+        background: "linear-gradient(to top, #6BA0B3 0%, transparent 100%)",
+        borderRadius: "50% 50% 0 0 / 35% 35% 0 0"
+      }}/>
+    </div>
+  )
+}
