@@ -8,9 +8,9 @@ import { Slider } from "@/components/ui/slider"
 import { useRouter } from "next/navigation"
 
 const questions = [
-  "Are you an indoor person or an outdoor person?",
-  "Do you prefer working with your hands or your mind?",
-  "Are you more creative or analytical?",
+  "インドア派？　アウトドア派？",
+  "手を動かすのが好き？　頭を使うのが好き？",
+  "想像するのが好き？　分析するのが好き？",
   "Do you like working alone or with others?",
   "Are you more active or relaxed in your free time?",
   "Do you prefer structured activities or spontaneous ones?",
