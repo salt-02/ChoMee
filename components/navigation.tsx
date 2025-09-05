@@ -19,7 +19,7 @@ export function Navigation() {
             className="flex flex-col gap-1 h-auto py-2"
           >
             <Home className="w-4 h-4" />
-            <span className="text-xs">Home</span>
+            <span className="text-xs">serch</span>
           </Button>
         </Link>
 
@@ -51,6 +51,53 @@ export function Navigation() {
         </Button>
       </div>
     </nav>
+    <body>
+  <header class="top-area">
+    <h1 class="logo">ChoMee</h1>
+    <svg class="wave-top" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
+      <!-- オレンジの波：山3つ、左にシフト -->
+      <path fill="#F49342" fill-opacity="0.5"
+        d="M0,100 C240,200 480,0 720,100 C960,200 1200,0 1440,100 L1440,0 L0,0 Z"></path>
+    </svg>
+  </header>
+
+  <main class="content">
+   <div class="blob">趣味診断</div>
+   <div class="blob2">コミュニティーに入る</div>
+   
+    <!-- メインコンテンツ -->
+  </main>
+
+ <footer class="bottom-area">
+  <svg class="wave-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" preserveAspectRatio="none" >
+    <path fill="#1C668B" fill-opacity="0.5"
+      d="M0,100 C240,0 480,200 720,100 C960,0 1200,200 1440,100 L1440,200 L0,200 Z"></path>
+  </svg>
+  <div class="icons">
+    <!-- 左：検索 -->
+    <a href="search.html" class="icon-btn">
+      <i class="fas fa-search"></i>
+    </a>
+
+    <!-- 真ん中：人＋左矢印 -->
+    <a href="community.html" class="icon-btn">
+      <div class="custom-icon">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="16" r="11" fill="none" stroke="white" stroke-width="6"/>
+          <path d="M25 25 Q20 40 21 48 M41 25 Q46 40 45 48" fill="none" stroke="white" stroke-width="6" stroke-linecap="round"/>
+          <line x1="4" y1="28" x2="15" y2="28" stroke="white" stroke-width="4" stroke-linecap="round"/>
+          <polyline points="9,23 4,28 9,33" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </a>
+
+    <!-- 右：歯車 -->
+    <a href="setting.html" class="icon-btn">
+      <i class="fas fa-cog"></i>
+    </a>
+  </div>
+</footer>
+
   )
 }
 
