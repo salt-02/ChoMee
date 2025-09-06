@@ -17,52 +17,52 @@ interface Hobby {
 
 const hobbies: Hobby[] = [
   {
-    name: "Photography",
+    name: "写真撮影",
     description:
-      "Capture beautiful moments and express your creativity through the lens. Perfect for those who love both technical precision and artistic expression.",
+      "美しい瞬間を捉え、レンズを通して創造性を表現しましょう。技術的な精度と芸術的な表現の両方を愛する方に最適です。",
     image: "/camera-photography-nature.jpg",
     matchPercentage: 0,
-    tags: ["Creative", "Technical", "Outdoor", "Solo"],
+    tags: ["創作", "技術", "アウトドア", "個人"],
   },
   {
-    name: "Rock Climbing",
+    name: "崖登り",
     description:
-      "Challenge yourself physically and mentally while connecting with nature. Great for adventure seekers who love problem-solving.",
+      "自然と触れ合いながら、心身ともに限界に挑戦しましょう。問題解決能力に長けた冒険好きな方に最適です。",
     image: "/rock-climbing-mountain-adventure.jpg",
     matchPercentage: 0,
-    tags: ["Physical", "Outdoor", "Challenge", "Community"],
+    tags: ["身体", "アウトドア", "挑戦的", "コミュニティー"],
   },
   {
-    name: "Cooking",
+    name: "料理",
     description:
-      "Create delicious meals and explore different cultures through food. Perfect for those who enjoy hands-on creativity and sharing with others.",
+      "美味しい料理を作り、食を通して様々な文化を探求しましょう。実践的な創造性と、他の人との共有を楽しむ方に最適です。",
     image: "/cooking-kitchen-chef-food.jpg",
     matchPercentage: 0,
-    tags: ["Creative", "Hands-on", "Social", "Cultural"],
+    tags: ["創作", "実践的", "コミュニティ", "文化"],
   },
   {
-    name: "Digital Art",
+    name: "デジタルアート",
     description:
-      "Express your creativity using modern technology. Ideal for those who love visual arts and working with digital tools.",
+      "最新テクノロジーを駆使して、あなたの創造性を表現しましょう。ビジュアルアートやデジタルツールを使った作業が好きな方に最適です。",
     image: "/digital-art-tablet-drawing-creative.jpg",
     matchPercentage: 0,
-    tags: ["Creative", "Digital", "Solo", "Artistic"],
+    tags: ["創作", "デジタル", "個人", "芸術的"],
   },
   {
-    name: "Gardening",
+    name: "園芸",
     description:
-      "Connect with nature and create beautiful spaces. Perfect for those who enjoy peaceful, nurturing activities with long-term rewards.",
+      "自然と繋がり、美しい空間を創り出しましょう。心安らぐ、長期的な満足感を伴うアクティビティを楽しみたい方に最適です。",
     image: "/gardening-plants-flowers-nature.jpg",
     matchPercentage: 0,
-    tags: ["Nature", "Peaceful", "Hands-on", "Long-term"],
+    tags: ["自然", "平和", "実践的", "長期的"],
   },
   {
-    name: "Board Games",
+    name: "ボードゲーム",
     description:
-      "Engage in strategic thinking while socializing with friends. Great for those who love mental challenges and community.",
+      "友達と交流しながら戦略的思考力を鍛えましょう。知的なチャレンジとコミュニティ活動が好きな方に最適です。",
     image: "/board-games-strategy-friends-social.jpg",
     matchPercentage: 0,
-    tags: ["Social", "Strategic", "Indoor", "Community"],
+    tags: ["社会", "戦力的", "インドア", "コミュニティ"],
   },
 ]
 
