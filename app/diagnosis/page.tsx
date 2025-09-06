@@ -135,7 +135,7 @@ export default function DiagnosisPage() {
                 className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
                 disabled={answeredQuestions === 0}
               >
-                診断結果を得る ({answeredQuestions}/{questions.length} answered)
+                診断結果を得る ({answeredQuestions}/{questions.length})
               </Button>
             </div>
           </CardContent>
